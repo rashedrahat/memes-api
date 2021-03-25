@@ -15,10 +15,12 @@ cd memes-api
 npm i
 ```
 
-Finally, run the development server:
+After then, run the server:
 
 ```bash
 npm run start
 ```
+
+Finally, import the `memes-api.json` into `Postman` or `Talend API Tetser` and test the API endpoints.
 
 **Note:** Developed in Node version `10.13.0` Recommended Node version `10.13.0` or required any Node version `10.x.x`
