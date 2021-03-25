@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include ('../partials/head.ejs') %>
+</head>
+
+<body style="text-align: center;">
+<%- include ('../partials/header.ejs') %>
+
+<h1>Registration</h1>
+<form id="reg-form">
+    <input type="text" autocomplete="off" id="name" placeholder="Name" required/>
+    <input type="email" autocomplete="off" id="email" placeholder="Email" required/>
+    <input type="password" autocomplete="off" id="password" placeholder="Password" required/>
+    <input type="submit" value="Submit"/>
+</form>
+
+<script>
+    const form = document.getElementById('reg-form')
+    form.addEventListener('submit', registerUser)
+
+    async function registerUser(event) {
+        event.preventDefault()
+        const name = document.getElementById('name').value
+        const email = document.getElementById('email').value
+        const password = document.getElementById('password').value
+
+        const result = await fetch('/api/auth/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name,
+                email,
+                password
+            })
+        }).then((res) => res.json())
+
+        let feedback
+
+        if (result.success) {
+            feedback = `${result.message}`
+            alert(feedback)
+            window.location.href = '/login'
+        } else {
+            if (result.errors !== undefined) {
+                const {errors} = result
+                const errMsgList = errors.map(error => error.msg)
+                feedback = `${result.message}\n${errMsgList}`
+                alert(feedback)
+            } else {
+                feedback = `${result.message}`
+                alert(feedback)
+            }
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<div>
+    <a href="/">All Memes</a>
+    <% if (!hasSession) { %>
+        | <a href="/register">Register</a>
+    <% } %>
+    <% if (!hasSession) { %>
+        | <a href="/login">Login</a>
+    <% } %>
+    <% if (hasSession) { %>
+        | <a href="/memes/add">Upload a Meme</a> |
+        <a href="/memes/stats">Stats</a> |
+        <a href="/logout">Logout</a>
+    <% } %>
+</div>

@@ -1,7 +1,7 @@
 {
   "name": "memes-api",
   "version": "1.0.0",
-  "description": "REST APIs for sharing memes, viewing statistics of uploaded memes, and so on using Express.js & MongoDB with JWT.",
+  "description": "Memes sharing, viewing statistics of uploaded memes, and so on using Node.js with Express.js, MongoDB &amp; JWT.",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -14,11 +14,14 @@
     "bcrypt": "3.0.4",
     "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
+    "ejs": "^3.1.6",
     "express": "^4.17.1",
+    "express-session": "^1.17.1",
     "express-validator": "^6.8.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.5",
     "multer": "^1.4.2",
+    "node-fetch": "^2.6.1",
     "urlgenerator": "^0.7.4"
   },
   "devDependencies": {

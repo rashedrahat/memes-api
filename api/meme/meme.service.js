@@ -4,21 +4,21 @@ const insert = (data) => {
     return memeModel.create(data)
 }
 
-const findByShareAbleLink = link => {
-    return memeModel.find({shareAbleLink : link})
+const findByConditions = (conditions) => {
+    return memeModel.find(conditions)
 }
 
 const findByIdAndUpdate = (id, data) => {
     return memeModel.findByIdAndUpdate(id, data)
 }
 
-const findAll = () => {
-    return memeModel.find({}, {memeImageName: 1, _id: 0}).sort( { 'statistics.viewed': -1 } )
+const findAll = (conditions) => {
+    return memeModel.find(conditions, {memeName: 1, memeImageName: 1, shareAbleLink: 1, statistics: 1, _id: 0}).sort( { 'statistics.viewed': -1, 'statistics.liked': -1, 'uploadedTime': -1 } )
 }
 
 module.exports = {
     insert,
-    findByShareAbleLink,
+    findByConditions,
     findByIdAndUpdate,
     findAll
 }
