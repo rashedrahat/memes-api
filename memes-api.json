@@ -1,0 +1,321 @@
+{
+  "version": 6,
+  "entities": [
+    {
+      "entity": {
+        "type": "Project",
+        "id": "e1ca435d-a0fe-4674-97ff-7cd10ee64736",
+        "name": "memes"
+      },
+      "children": [
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "multipart/form-data",
+                "items": [
+                  {
+                    "enabled": true,
+                    "type": "Text",
+                    "name": "memeName",
+                    "value": "Just a test"
+                  },
+                  {
+                    "enabled": true,
+                    "type": "File",
+                    "name": "memeImage"
+                  },
+                  {
+                    "enabled": true,
+                    "type": "Text",
+                    "name": "allowedSite[]",
+                    "value": "facebook.com"
+                  },
+                  {
+                    "enabled": true,
+                    "type": "Text",
+                    "name": "allowedSite[]",
+                    "value": "youtube.com"
+                  }
+                ]
+              },
+              "bodyType": "Form",
+              "textBody": "{\n  \"email\" : \"testXYZ@test.com\",\n  \"password\" : \"abc123\"\n}"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "name": "http",
+                "version": "V11"
+              },
+              "host": "localhost:2021",
+              "path": "/api/meme/all"
+            },
+            "id": "565a74e4-30e8-455c-9f2a-984681a44a45",
+            "name": "List all memes",
+            "headers": []
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+              "name": "POST"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "multipart/form-data",
+                "items": [
+                  {
+                    "enabled": true,
+                    "type": "Text",
+                    "name": "memeName",
+                    "value": "Just another test"
+                  },
+                  {
+                    "enabled": true,
+                    "type": "File",
+                    "name": "memeImage"
+                  },
+                  {
+                    "enabled": true,
+                    "type": "Text",
+                    "name": "allowedSite[]",
+                    "value": "facebook.com"
+                  },
+                  {
+                    "enabled": true,
+                    "type": "Text",
+                    "name": "allowedSite[]",
+                    "value": "youtube.com"
+                  }
+                ]
+              },
+              "bodyType": "Form",
+              "textBody": "{\n  \"email\" : \"testXYZ@test.com\",\n  \"password\" : \"abc123\"\n}"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "name": "http",
+                "version": "V11"
+              },
+              "host": "localhost:2021",
+              "path": "/api/meme/add"
+            },
+            "id": "5d94cccf-c7eb-441c-ad7c-2f2c6a9536e7",
+            "name": "Upload a meme",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYwNWM5NTg5NTNmNzVmNDA3NDczYmQzYiIsIm5hbWUiOiJSYXNoZWQgUmFoYXQiLCJlbWFpbCI6InJhc2hlZHJhaGF0QHRlc3QuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkMGJFNWdYcGRBV3NGQTZqc2RqSUVtT2Y1NHJNbnRxdTBsTzJnUTV1LzBTQ3FlTW5tZGZDSDYiLCJfX3YiOjB9LCJpYXQiOjE2MTY2ODA1NTQsImV4cCI6MTYxNjc2Njk1NH0.gGJ7ust84akFDy-V2UqNNSpg93OUI74NrCoQTahabpg"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+              "name": "POST"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": [
+                  {
+                    "enabled": true,
+                    "type": "Text",
+                    "name": "name",
+                    "value": ""
+                  },
+                  {
+                    "enabled": true,
+                    "type": "Text",
+                    "name": "email",
+                    "value": ""
+                  },
+                  {
+                    "enabled": true,
+                    "type": "Text",
+                    "name": "password",
+                    "value": ""
+                  }
+                ]
+              },
+              "bodyType": "Text",
+              "textBody": "{\n  \"email\" : \"rashedrahat@test.com\",\n  \"password\" : \"123456\"\n}"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "name": "http",
+                "version": "V11"
+              },
+              "host": "localhost:2021",
+              "path": "/api/auth/login"
+            },
+            "id": "1e3b4b6a-4ca2-4942-a6aa-c399e96226ed",
+            "name": "User login",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+              "name": "POST"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": [
+                  {
+                    "enabled": true,
+                    "type": "Text",
+                    "name": "name",
+                    "value": ""
+                  },
+                  {
+                    "enabled": true,
+                    "type": "Text",
+                    "name": "email",
+                    "value": ""
+                  },
+                  {
+                    "enabled": true,
+                    "type": "Text",
+                    "name": "password",
+                    "value": ""
+                  }
+                ]
+              },
+              "bodyType": "Text",
+              "textBody": "{\n  \"name\" : \"Rashed Rahat\",\n  \"email\" : \"rashedrahat@test.com\",\n  \"password\" : \"123456\"\n}"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "name": "http",
+                "version": "V11"
+              },
+              "host": "localhost:2021",
+              "path": "/api/auth/register"
+            },
+            "id": "bd3c97ef-e4a9-45e0-b850-792eb08c6061",
+            "name": "User sign-up",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "multipart/form-data",
+                "items": [
+                  {
+                    "enabled": true,
+                    "type": "Text",
+                    "name": "memeName",
+                    "value": "Just a test"
+                  },
+                  {
+                    "enabled": true,
+                    "type": "File",
+                    "name": "memeImage"
+                  },
+                  {
+                    "enabled": true,
+                    "type": "Text",
+                    "name": "allowedSite[]",
+                    "value": "facebook.com"
+                  },
+                  {
+                    "enabled": true,
+                    "type": "Text",
+                    "name": "allowedSite[]",
+                    "value": "youtube.com"
+                  }
+                ]
+              },
+              "bodyType": "Form",
+              "textBody": "{\n  \"email\" : \"testXYZ@test.com\",\n  \"password\" : \"abc123\"\n}"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": [
+                  {
+                    "enabled": true,
+                    "name": "fileName",
+                    "value": "meme-1.jpeg_1616692710941"
+                  }
+                ]
+              },
+              "scheme": {
+                "name": "http",
+                "version": "V11"
+              },
+              "host": "localhost:2021",
+              "path": "/"
+            },
+            "id": "1e8a0741-6511-4e3c-a4fd-6785cef67bb2",
+            "name": "View a shareable link",
+            "headers": []
+          }
+        }
+      ]
+    }
+  ]
+}
