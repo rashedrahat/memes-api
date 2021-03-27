@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include ('../../partials/head.ejs') %>
+</head>
+
+<body style="text-align: center;">
+<%- include ('../../partials/header.ejs') %>
+
+<h1>Upload a Meme</h1>
+<form id="upload-meme-form" enctype="multipart/form-data">
+    <input type="hidden" id="token" value="<%= token %>">
+    <input type="text" autocomplete="off" id="memeName" placeholder="Name" required/><br/><br/>
+    <input type="file" id="memeImage" required/><br/><br/>
+    <label for="Allow site"> Allow site:</label>
+    <input type="checkbox" id="facebook" value="www.facebook.com" name="allowedSite">
+    <label for="fb"> Facebook</label>
+    <input type="checkbox" id="youtube" value="www.youtube.com" name="allowedSite">
+    <label for="yt"> Youtube</label><br/>
+    <input type="checkbox" id="all" value="all" name="allowedSite">
+    <label for="all"> From anywhere</label><br/><br/>
+    <input type="submit" value="Upload"/>
+</form>
+
+<script>
+    function getCheckedAllowSites() {
+        const allowedSites = document.getElementsByName('allowedSite');
+        let allowedSitesList = [];
+        for (let i = 0; i < allowedSites.length; i++) {
+            if (allowedSites[i].checked) {
+                allowedSitesList.push(allowedSites[i].value);
+            }
+        }
+
+        return allowedSitesList.length > 0 ? allowedSitesList : ['all'];
+    }
+
+    const form = document.getElementById('upload-meme-form')
+    form.addEventListener('submit', uploadMeme)
+
+    async function uploadMeme(event) {
+        event.preventDefault()
+
+        const token = document.getElementById('token').value
+        const name = document.getElementById('memeName').value
+        const img = document.getElementById('memeImage')
+        const allowedSites = getCheckedAllowSites();
+
+        let formData = new FormData();
+        formData.append('memeName', name);
+        formData.append('memeImage', img.files[0]);
+        allowedSites.map(site => formData.append('allowedSite[]', site))
+
+        const result = await fetch('/api/meme/add', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            },
+            body: formData
+        }).then((res) => res.json())
+
+        let feedback
+
+        if (result.success) {
+            feedback = `${result.message}`
+            alert(feedback)
+            window.location.href = '/'
+        } else {
+            if (result.errors !== undefined) {
+                const {errors} = result
+                const errMsgList = errors.map(error => error.msg)
+                feedback = `${result.message}\n${errMsgList}`
+                alert(feedback)
+            } else {
+                feedback = `${result.message}`
+                alert(feedback)
+            }
+        }
+    }
+</script>
+</body>
+</html>

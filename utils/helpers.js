@@ -6,7 +6,7 @@ const genShareAbleLink = (host, fileName) => {
     const parameters = {
         'fileName': fileName
     };
-    const finalURL = createURLWithParameters(baseURL, parameters);
+    const finalURL = createURLWithParameters(baseURL + 'view-meme', parameters);
     return finalURL;
 }
 

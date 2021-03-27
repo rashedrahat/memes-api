@@ -6,5 +6,6 @@ const uploadFileMiddleware = require('../../middlewares/fileUpload')
 
 router.post('/add', verifyToken.verifyToken, uploadFileMiddleware, reqBodyValidators.validate('addMeme'), memeController.insertMeme)
 router.get('/all', memeController.getMemesList)
+router.get('/stats', verifyToken.verifyToken, memeController.getMemesStats)
 
 module.exports = router

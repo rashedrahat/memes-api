@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include ('../../partials/head.ejs') %>
+</head>
+
+<body style="text-align: center;">
+<%- include ('../../partials/header.ejs') %>
+
+<h1>Meme</h1>
+<h3><%= meme.memeName %></h3>
+<img src="uploads/<%= meme.memeImageName %>" style="width: 200px; height: 200px;"/>
+<p><small>Views: <%= meme.statistics.viewed %></small>&nbsp;<small>Likes: <%= meme.statistics.liked %></small></p>
+<button type="button" id="like-btn">Like</button>
+<input type="hidden" value="<%= meme.allowedList %>" id="allowedList">
+<input type="hidden" value="<%= meme['_id'] %>" id="memeId">
+<script>
+    function checkViewEligibility (array) {
+        const prevURL = document.referrer
+        // console.log('19', prevURL)
+        const found = array.find(site => site === 'all')
+        if (found !== undefined) {
+            return true
+        } else {
+            // console.log('Haw maw kaw')
+            return array.includes(prevURL.split('/')[2])
+        }
+    }
+
+    (function() {
+        let allowedList = document.getElementById('allowedList').value
+        allowedList = allowedList.split(",");
+        const allowToView = checkViewEligibility(allowedList)
+        // console.log(allowToView)
+        if (!allowToView) {
+            alert('You are not allowed to view this meme :(')
+            window.location.href = document.referrer;
+        }
+
+        const likeBtn = document.getElementById('like-btn')
+        likeBtn.addEventListener('click', proceedLike)
+
+        async function proceedLike(event) {
+            event.preventDefault()
+            const memeId = document.getElementById('memeId').value
+
+            const result = await fetch('/meme/like', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    memeId
+                })
+            }).then((res) => res.json())
+
+            let feedback
+
+            if (result.success) {
+                feedback = `${result.message}`
+                alert(feedback)
+                location.reload()
+            } else {
+                if (result.errors !== undefined) {
+                    const {errors} = result
+                    const errMsgList = errors.map(error => error.msg)
+                    feedback = `${result.message}\n${errMsgList}`
+                    alert(feedback)
+                } else {
+                    feedback = `${result.message}`
+                    alert(feedback)
+                }
+            }
+        }
+    })();
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include ('../../partials/head.ejs') %>
+</head>
+
+<body style="text-align: center;">
+<%- include ('../../partials/header.ejs') %>
+
+<h1>Uploaded Memes Stats</h1>
+<% if(memes.length > 0){ %>
+    <% for(var i=0; i < memes.length; i++) { %>
+        <div>
+            <h3><%= memes[i].memeName %></h3>
+            <img src="/uploads/<%= memes[i].memeImageName %>" style="width: 200px; height: 200px;"/>
+            <p><small>Views: <%= memes[i].statistics.viewed %></small>&nbsp;<small>Likes: <%= memes[i].statistics.liked %></small> <small>Blocks: <%= memes[i].statistics.blockedRequest %></small></p>
+            <p><small>Shareable link: <a href="<%= memes[i].shareAbleLink %>" target="_blank"><%= memes[i].shareAbleLink %></a></small></p>
+            <hr/>
+        </div>
+    <% } %>
+<% } else{ %>
+    <h3>No results found for uploaded memes.</h3>
+<% } %>
+</body>
+</html>
