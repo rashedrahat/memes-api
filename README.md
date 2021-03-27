@@ -1,6 +1,3 @@
-# memes-api
-Memes sharing, viewing statistics of uploaded memes, and so on using Node.js with Express.js, MongoDB &amp; JWT.
-
 ## Getting Started
 
 First, clone the project:
