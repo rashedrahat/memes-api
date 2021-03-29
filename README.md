@@ -12,10 +12,12 @@ cd memes-api
 npm i
 ```
 
-After then, run the server:
+Finally, run the server:
 
 ```bash
 npm run start
 ```
+
+Open [http://localhost:2021](http://localhost:2021) with your browser to see the result.
 
 **Note:** Developed in Node version `10.13.0` Recommended Node version `10.13.0` or required any Node version `10.x.x`
